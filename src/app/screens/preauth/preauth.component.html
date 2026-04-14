@@ -1,0 +1,58 @@
+<app-page-header
+  title="Pre-authorisations"
+  subtitle="Request and track pre-authorisations for procedures and hospitalisations" />
+
+<div class="mg mg-3">
+  <app-metric-card
+    *ngFor="let metric of summaryMetrics"
+    [label]="metric.label"
+    [value]="metric.value"
+    [subtitle]="metric.subtitle"
+    [tone]="metric.tone ?? ''" />
+</div>
+
+<div class="sh">Active pre-authorisations</div>
+<div
+  *ngFor="let card of activeItems"
+  class="card card-sm preauth-card"
+  [class.preauth-ok]="card.borderTone === 'ok'">
+  <div class="cl-row preauth-row">
+    <div class="cl-icon preauth-icon" [class.preauth-icon-ok]="card.iconTone === 'ok'">
+      <svg viewBox="0 0 24 24" [innerHTML]="icon(card)"></svg>
+    </div>
+    <div class="cl-body">
+      <div class="cl-title">{{ card.title }}</div>
+      <div class="cl-meta">{{ card.meta }}</div>
+      <div class="badge-row">
+        <span *ngFor="let badge of card.badges" class="badge" [ngClass]="badge.className">{{ badge.label }}</span>
+      </div>
+      <div class="card-detail-line">{{ card.amountLabel }}: <strong>{{ card.amount }}</strong> · {{ card.detail }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="sh">Pending review</div>
+<div
+  *ngFor="let card of pendingItems"
+  class="card card-sm preauth-card"
+  [class.preauth-warn]="card.borderTone === 'warn'">
+  <div class="cl-row preauth-row">
+    <div class="cl-icon preauth-icon" [class.preauth-icon-warn]="card.iconTone === 'warn'">
+      <svg viewBox="0 0 24 24" [innerHTML]="icon(card)"></svg>
+    </div>
+    <div class="cl-body">
+      <div class="cl-title">{{ card.title }}</div>
+      <div class="cl-meta">{{ card.meta }}</div>
+      <div class="badge-row">
+        <span *ngFor="let badge of card.badges" class="badge" [ngClass]="badge.className">{{ badge.label }}</span>
+      </div>
+      <div class="card-detail-line">{{ card.amountLabel }}: <strong>{{ card.amount }}</strong> · {{ card.detail }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<button class="btn btn-t" type="button" (click)="openRequest()" style="max-width:320px">
+  <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+  Request new pre-authorisation
+</button>

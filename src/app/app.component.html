@@ -1,0 +1,66 @@
+<div class="shell">
+  <aside class="leftpanel">
+    <div class="lp-brand">
+      <div class="lp-logo">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div>
+        <div class="lp-name">MediShieldGuard</div>
+        <div class="lp-sub">Provider Portal</div>
+      </div>
+    </div>
+
+    <div class="lp-divider"></div>
+
+    <div class="lp-doctor">
+      <div class="lp-av">AN</div>
+      <div class="lp-dname">Dr Ayanda Nkosi</div>
+      <div class="lp-dprac">PRAC-041228 · BHF 041228</div>
+      <div class="lp-spec">Cardiology · DSP Network</div>
+    </div>
+
+    <nav class="lp-nav">
+      <ng-container *ngFor="let section of navSections">
+        <div class="lp-section">{{ section.title }}</div>
+        <a
+          *ngFor="let item of section.items"
+          class="navitem"
+          [routerLink]="['/', item.id]"
+          routerLinkActive="on"
+          [routerLinkActiveOptions]="{ exact: true }">
+          <span [innerHTML]="item.safeIcon"></span>
+          <span>{{ item.label }}</span>
+          <span *ngIf="item.badge" [class]="item.badgeClass || 'nav-badge'">{{ item.badge }}</span>
+        </a>
+      </ng-container>
+    </nav>
+
+    <div class="lp-footer">v2.4 · HPCSA compliant · ©2026</div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title">{{ currentTitle }}</div>
+      <div class="topbar-actions">
+        <div class="tb-env">
+          <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          DSP Active
+        </div>
+        <a class="tb-btn" [routerLink]="['/submit']" title="New claim">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </a>
+        <a class="tb-btn" [routerLink]="['/notifications']" title="Notifications">
+          <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <div class="notif-dot"></div>
+        </a>
+        <a class="tb-avatar" [routerLink]="['/profile']">AN</a>
+      </div>
+    </div>
+
+    <div class="content" id="contentArea">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<div class="toast" [class.show]="toastVisible()">{{ toastMessage() }}</div>

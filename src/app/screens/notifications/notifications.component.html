@@ -1,0 +1,35 @@
+<div class="page-head-row">
+  <app-page-header
+    title="Notifications"
+    subtitle="Alerts, updates, and messages from MediShieldGuard" />
+
+  <div class="page-head-actions">
+    <button class="btn btn-s btn-sm" type="button" (click)="markAllRead()">Mark all read</button>
+  </div>
+</div>
+
+<ng-container *ngFor="let section of sections">
+  <div class="sh">{{ section.title }}</div>
+  <div *ngFor="let item of section.items" class="card card-sm">
+    <div class="cl-row" style="border-bottom:none">
+      <div class="cl-icon" [ngClass]="{
+        'tone-danger-bg': item.tone === 'danger',
+        'tone-ok-bg': item.tone === 'ok',
+        'tone-info-bg': item.tone === 'info',
+        'tone-warn-bg': item.tone === 'warn'
+      }">
+        <svg viewBox="0 0 24 24" [ngClass]="{
+          'tone-danger-stroke': item.tone === 'danger',
+          'tone-ok-stroke': item.tone === 'ok',
+          'tone-info-stroke': item.tone === 'info',
+          'tone-warn-stroke': item.tone === 'warn'
+        }" [innerHTML]="icon(item)"></svg>
+      </div>
+      <div class="cl-body">
+        <div class="cl-title">{{ item.title }}</div>
+        <div class="cl-meta">{{ item.body }}</div>
+      </div>
+      <div class="cl-right"><div class="cl-date">{{ item.time }}</div></div>
+    </div>
+  </div>
+</ng-container>

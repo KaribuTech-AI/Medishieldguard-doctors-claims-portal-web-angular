@@ -1,0 +1,102 @@
+<app-page-header
+  title="Good morning, Dr Nkosi"
+  subtitle="April 14, 2026 · Practice 041228 · Cardiology · DSP Network Provider" />
+
+<div
+  *ngFor="let alert of alerts"
+  class="alert"
+  [class.al-t]="alert.tone === 'info'"
+  [class.al-a]="alert.tone === 'urgent'">
+  <div class="al-icon" [innerHTML]="alert.icon"></div>
+  <div>
+    {{ alert.message }}
+    <a class="inline-link" [routerLink]="['/', alert.route]">{{ alert.linkLabel }} →</a>
+  </div>
+</div>
+
+<div class="g2" style="margin-bottom:14px">
+  <div class="card-hero" style="margin-bottom:0">
+    <div class="hero-eyebrow">Claims this month</div>
+    <div class="hero-amount">R 48,620<span style="font-size:22px;opacity:.7">.00</span></div>
+    <div class="hero-sub">April 2026 · 14 claims submitted · 11 settled</div>
+    <button class="hero-btn" type="button" data-go="submit">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Submit new claim
+    </button>
+  </div>
+
+  <div class="stack-col">
+    <app-metric-card label="Next payment" value="R 34,180" subtitle="EFT due April 18" tone="ok" route="remittance" />
+    <app-metric-card label="Pending claims" value="3" subtitle="Under review" tone="warn" route="claims" />
+  </div>
+</div>
+
+<div class="mg mg-4">
+  <app-metric-card
+    *ngFor="let metric of metrics"
+    [label]="metric.label"
+    [value]="metric.value"
+    [subtitle]="metric.subtitle"
+    [tone]="metric.tone ?? ''"
+    [route]="metric.route ?? null" />
+</div>
+
+<div class="sh">Quick actions</div>
+<div class="g3">
+  <app-action-tile
+    *ngFor="let action of actions"
+    [label]="action.label"
+    [route]="action.route"
+    [icon]="action.icon" />
+</div>
+
+<div class="sh">Recent claims</div>
+<div class="card card-sm">
+  <ng-container *ngFor="let claim of claims">
+    <a *ngIf="claim.route; else staticClaim" class="cl-row recent-claim-link" [routerLink]="['/', claim.route]">
+      <div class="cl-icon" [style.background]="claim.iconBg">
+        <svg viewBox="0 0 24 24" [style.stroke]="claim.iconStroke" [innerHTML]="claimIcon(claim)"></svg>
+      </div>
+      <div class="cl-body">
+        <div class="cl-title">{{ claim.title }}</div>
+        <div class="cl-meta">{{ claim.meta }}</div>
+        <div class="badge-row">
+          <span *ngFor="let badge of claim.badges" class="badge" [ngClass]="badge.className">{{ badge.label }}</span>
+        </div>
+      </div>
+      <div class="cl-right">
+        <div class="cl-amt" [ngClass]="claim.amountTone">{{ claim.amount }}</div>
+        <div class="cl-date">{{ claim.date }}</div>
+      </div>
+    </a>
+
+    <ng-template #staticClaim>
+      <div class="cl-row">
+        <div class="cl-icon" [style.background]="claim.iconBg">
+          <svg viewBox="0 0 24 24" [style.stroke]="claim.iconStroke" [innerHTML]="claimIcon(claim)"></svg>
+        </div>
+        <div class="cl-body">
+          <div class="cl-title">{{ claim.title }}</div>
+          <div class="cl-meta">{{ claim.meta }}</div>
+          <div class="badge-row">
+            <span *ngFor="let badge of claim.badges" class="badge" [ngClass]="badge.className">{{ badge.label }}</span>
+          </div>
+        </div>
+        <div class="cl-right">
+          <div class="cl-amt" [ngClass]="claim.amountTone">{{ claim.amount }}</div>
+          <div class="cl-date">{{ claim.date }}</div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+</div>
+
+<div class="sh">Upcoming payments</div>
+<div class="card card-sm">
+  <div *ngFor="let payment of payments" class="dr">
+    <div class="dr-lbl">{{ payment.label }}</div>
+    <div class="dr-val" [class.payment-primary]="payment.tone === 'primary'" [class.dr-mono]="payment.mono">
+      {{ payment.value }}
+    </div>
+  </div>
+</div>

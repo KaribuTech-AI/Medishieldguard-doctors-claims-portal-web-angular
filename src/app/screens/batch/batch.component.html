@@ -1,0 +1,60 @@
+<div class="pg-head" style="display:flex;align-items:flex-end;justify-content:space-between"><div><div class="pg-title">Batch submissions</div><div class="pg-sub">Upload multiple claims at once using CMS EDI standard format</div></div><div style="display:flex;gap:8px"><button class="btn btn-s btn-sm" data-toast="Downloading batch template (CSV)..."><svg viewBox="0 0 24 24" style="width:15px;height:15px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download template</button></div></div>
+
+  <div class="mg mg-4">
+    <div class="metric"><div class="metric-lbl">Total batches</div><div class="metric-val">12</div><div class="metric-sub" style="color:var(--ink3)">2026 YTD</div></div>
+    <div class="metric"><div class="metric-lbl">Claims submitted</div><div class="metric-val">142</div><div class="metric-sub" style="color:var(--ink3)">Via batch upload</div></div>
+    <div class="metric"><div class="metric-lbl">Success rate</div><div class="metric-val ok">97.2%</div><div class="metric-sub ok">138 / 142 approved</div></div>
+    <div class="metric"><div class="metric-lbl">Total billed</div><div class="metric-val">R486,820</div><div class="metric-sub" style="color:var(--ink3)">Batch claims value</div></div>
+  </div>
+
+  <div class="alert al-g"><div class="al-icon">&#128230;</div><div>Upload claims in <strong>CMS EDI standard format</strong> (CSV or XML). Each row must include: policy number, date of service, ICD-10 primary, procedure codes, amount billed. Maximum <strong>200 claims</strong> per batch. Files are validated in real-time before submission.</div></div>
+
+  <div class="g2">
+    <div>
+      <div class="sh">Upload new batch</div>
+      <div class="card">
+        <div class="upload-zone" data-toast="Batch file uploaded &mdash; 12 claims detected, validating...">
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--ink4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:10px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <div style="font-size:14px;color:var(--ink2);font-weight:500">Drop batch file here or click to upload</div>
+          <div style="font-size:12px;color:var(--ink4);margin-top:6px">Accepted formats: CSV, XML &middot; EDI standard &middot; Max 200 claims per file</div>
+        </div>
+        <div class="divider"></div>
+        <div style="font-size:12px;color:var(--ink3);font-weight:300;line-height:1.65">
+          <strong style="font-weight:500;color:var(--ink2)">Required columns:</strong> PolicyNumber, DateOfService, ICD10Primary, ICD10Secondary (optional), ProcedureCodes, AmountBilled, ClaimType, PlaceOfService
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="sh">Batch validation rules</div>
+      <div class="card card-sm">
+        <div class="dr"><div class="dr-lbl">Policy numbers</div><div class="dr-val"><span class="badge bt">Auto-verified</span></div></div>
+        <div class="dr"><div class="dr-lbl">ICD-10 codes</div><div class="dr-val"><span class="badge bt">Validated</span></div></div>
+        <div class="dr"><div class="dr-lbl">Tariff compliance</div><div class="dr-val"><span class="badge bt">NHRPL 2026 checked</span></div></div>
+        <div class="dr"><div class="dr-lbl">Duplicate detection</div><div class="dr-val"><span class="badge bt">Active</span></div></div>
+        <div class="dr"><div class="dr-lbl">Benefit check</div><div class="dr-val"><span class="badge bt">Real-time</span></div></div>
+        <div class="dr"><div class="dr-lbl">Pre-auth required</div><div class="dr-val"><span class="badge ba">Flagged</span></div></div>
+      </div>
+      <div class="sh">Processing times</div>
+      <div class="card card-sm" style="background:var(--cream)">
+        <div class="dr"><div class="dr-lbl">File validation</div><div class="dr-val">&lt; 30 seconds</div></div>
+        <div class="dr"><div class="dr-lbl">Claim processing</div><div class="dr-val">Same-day (before 16:00)</div></div>
+        <div class="dr"><div class="dr-lbl">Settlement (DSP)</div><div class="dr-val">3 business days</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh">Batch submission history</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <table class="tbl">
+      <thead><tr><th>Batch</th><th>Date uploaded</th><th>Claims</th><th>Total value</th><th>Approved</th><th>Rejected</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+        <tr data-go="batch-detail" style="cursor:pointer"><td class="mono">#042</td><td>Apr 1, 2026</td><td>8</td><td style="font-family:'Fraunces',serif">R18,240</td><td style="color:var(--teal)">8</td><td>0</td><td><span class="badge bt">Complete</span></td><td style="color:var(--ink4);font-size:12px">View &rarr;</td></tr>
+        <tr data-go="batch-detail" style="cursor:pointer"><td class="mono">#041</td><td>Mar 15, 2026</td><td>15</td><td style="font-family:'Fraunces',serif">R42,680</td><td style="color:var(--teal)">14</td><td style="color:var(--blush)">1</td><td><span class="badge bg">14 approved</span></td><td style="color:var(--ink4);font-size:12px">View &rarr;</td></tr>
+        <tr style="cursor:pointer"><td class="mono">#040</td><td>Mar 1, 2026</td><td>12</td><td style="font-family:'Fraunces',serif">R36,120</td><td style="color:var(--teal)">12</td><td>0</td><td><span class="badge bt">Complete</span></td><td style="color:var(--ink4);font-size:12px">View &rarr;</td></tr>
+        <tr style="cursor:pointer"><td class="mono">#039</td><td>Feb 15, 2026</td><td>10</td><td style="font-family:'Fraunces',serif">R28,460</td><td style="color:var(--teal)">10</td><td>0</td><td><span class="badge bt">Complete</span></td><td style="color:var(--ink4);font-size:12px">View &rarr;</td></tr>
+        <tr style="cursor:pointer"><td class="mono">#038</td><td>Feb 1, 2026</td><td>14</td><td style="font-family:'Fraunces',serif">R48,920</td><td style="color:var(--teal)">13</td><td style="color:var(--blush)">1</td><td><span class="badge bg">13 approved</span></td><td style="color:var(--ink4);font-size:12px">View &rarr;</td></tr>
+        <tr style="cursor:pointer"><td class="mono">#037</td><td>Jan 15, 2026</td><td>11</td><td style="font-family:'Fraunces',serif">R32,840</td><td style="color:var(--teal)">11</td><td>0</td><td><span class="badge bt">Complete</span></td><td style="color:var(--ink4);font-size:12px">View &rarr;</td></tr>
+        <tr style="cursor:pointer"><td class="mono">#036</td><td>Jan 1, 2026</td><td>9</td><td style="font-family:'Fraunces',serif">R24,680</td><td style="color:var(--teal)">8</td><td style="color:var(--blush)">1</td><td><span class="badge bg">8 approved</span></td><td style="color:var(--ink4);font-size:12px">View &rarr;</td></tr>
+      </tbody>
+    </table>
+  </div>

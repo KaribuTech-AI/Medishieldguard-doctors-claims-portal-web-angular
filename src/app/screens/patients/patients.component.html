@@ -1,0 +1,66 @@
+<app-page-header
+  title="Patient lookup"
+  subtitle="Check member eligibility, benefit status, and claim history" />
+
+<div class="card">
+  <div class="g2">
+    <div class="field" style="margin-bottom:0">
+      <label>Policy number or ID number</label>
+      <input type="text" placeholder="e.g. POL-44810" [(ngModel)]="searchValue" name="searchValue">
+    </div>
+    <div style="display:flex;align-items:flex-end">
+      <button class="btn btn-p" style="margin:0" type="button" (click)="search()">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="hasSearched">
+  <div class="sh">Member found</div>
+  <div class="card">
+    <div class="patient-summary">
+      <div class="pat-av patient-summary-avatar">NK</div>
+      <div>
+        <div class="patient-summary-name">Nomsa Khumalo</div>
+        <div class="patient-summary-meta">Gold Shield+ · POL-44810 · Active</div>
+        <div class="badge-row">
+          <span class="badge bt">Eligible</span>
+          <span class="badge bg">CDL enrolled</span>
+          <span class="badge bg">DSP compliant</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="dr"><div class="dr-lbl">Date of birth</div><div class="dr-val">12 April 1988 (age 38)</div></div>
+    <div class="dr"><div class="dr-lbl">Gender</div><div class="dr-val">Female</div></div>
+    <div class="dr"><div class="dr-lbl">Annual benefit limit</div><div class="dr-val">R32,000</div></div>
+    <div class="dr"><div class="dr-lbl">Used YTD</div><div class="dr-val">R10,240 (32%)</div></div>
+    <div class="dr"><div class="dr-lbl">Remaining</div><div class="dr-val payment-primary">R21,760 (68%)</div></div>
+    <div class="dr"><div class="dr-lbl">CDL conditions</div><div class="dr-val">Hypertension (I10) - DMP enrolled</div></div>
+    <div class="dr"><div class="dr-lbl">Dependants</div><div class="dr-val">1 - Sipho Khumalo (child, age 6)</div></div>
+
+    <div class="divider"></div>
+    <div class="sh" style="margin-top:10px">Specialist benefit breakdown</div>
+    <div *ngFor="let item of benefitBreakdown" class="ben-row">
+      <div class="ben-hd">
+        <div class="ben-name">{{ item.name }}</div>
+        <div style="font-size:12px;color:var(--ink3)">{{ item.used }} / {{ item.total }}</div>
+      </div>
+      <div class="ben-bar"><div class="ben-fill" [style.width.%]="item.width" [class.med]="item.tone === 'med'" [class.hi]="item.tone === 'hi'"></div></div>
+      <div class="ben-nums"><span>{{ item.used }} used</span><span>{{ item.remaining }}</span></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sh" style="margin-top:10px">Recent claims (your practice)</div>
+    <div *ngFor="let claim of recentClaims; let last = last" class="cl-row" [style.borderBottom]="last ? 'none' : ''">
+      <div class="cl-body">
+        <div class="cl-title">{{ claim.title }}</div>
+        <div class="cl-meta">{{ claim.meta }}</div>
+      </div>
+      <div class="cl-right"><span class="badge" [ngClass]="claim.badgeClass">{{ claim.badge }}</span></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="page-head-row">
+  <app-page-header
+    title="All claims"
+    subtitle="Submit, track, and manage claims for your patients" />
+
+  <div class="page-head-actions">
+    <a class="btn btn-s btn-sm" [routerLink]="['/batch']">Batch upload</a>
+    <a class="btn btn-t btn-sm" [routerLink]="['/submit']">
+      <svg viewBox="0 0 24 24" style="width:15px;height:15px"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      New claim
+    </a>
+  </div>
+</div>
+
+<div class="mg mg-4">
+  <app-metric-card
+    *ngFor="let metric of summaryMetrics"
+    [label]="metric.label"
+    [value]="metric.value"
+    [subtitle]="metric.subtitle"
+    [tone]="metric.tone ?? ''" />
+</div>
+
+<div class="tabs">
+  <button
+    *ngFor="let tab of tabs"
+    type="button"
+    class="tab"
+    [class.on]="activeTab === tab.key"
+    (click)="selectTab(tab.key)">
+    {{ tab.label }}
+  </button>
+</div>
+
+<div class="card claims-table-card">
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Claim</th>
+        <th>Patient</th>
+        <th>Diagnosis</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of visibleRows()" class="claim-row">
+        <td class="mono">
+          <a *ngIf="row.route; else plainRef" class="claim-link" [routerLink]="['/', row.route]">{{ row.ref }}</a>
+          <ng-template #plainRef>{{ row.ref }}</ng-template>
+        </td>
+        <td><strong class="claim-patient">{{ row.patient }}</strong></td>
+        <td>{{ row.diagnosis }}</td>
+        <td class="claim-amount">{{ row.amount }}</td>
+        <td><span class="badge" [ngClass]="row.statusClass">{{ row.status }}</span></td>
+        <td class="mono">{{ row.date }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

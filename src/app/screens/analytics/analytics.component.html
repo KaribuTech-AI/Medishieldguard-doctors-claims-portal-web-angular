@@ -1,0 +1,65 @@
+<app-page-header
+  title="Practice analytics"
+  subtitle="Claims performance, revenue trends, and approval metrics for 2026" />
+
+<div class="mg mg-4">
+  <app-metric-card
+    *ngFor="let metric of summaryMetrics"
+    [label]="metric.label"
+    [value]="metric.value"
+    [subtitle]="metric.subtitle"
+    [tone]="metric.tone ?? ''" />
+</div>
+
+<div class="g2">
+  <div>
+    <div class="sh">Monthly claims volume</div>
+    <div class="card">
+      <div class="bar-chart">
+        <div *ngFor="let bar of monthlyBars" class="bar-col">
+          <div class="bar-val">{{ bar.value }}</div>
+          <div class="bar" [style.height.%]="bar.height" [class.t]="bar.tone === 'alert'"></div>
+          <div class="bar-lbl">{{ bar.label }}</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--ink4);margin-top:8px;text-align:right">*April in progress</div>
+    </div>
+  </div>
+
+  <div>
+    <div class="sh">Claims by category</div>
+    <div class="card">
+      <div *ngFor="let category of categories" class="ben-row">
+        <div class="ben-hd">
+          <div class="ben-name">{{ category.name }}</div>
+          <div style="font-size:12px;color:var(--ink3)">{{ category.count }}</div>
+        </div>
+        <div class="ben-bar"><div class="ben-fill" [style.width.%]="category.width" [class.med]="category.tone === 'med'"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sh">Top ICD-10 codes billed</div>
+<div class="card claims-table-card">
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Diagnosis</th>
+        <th>Claims</th>
+        <th>Total billed</th>
+        <th>Approval</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let code of topCodes">
+        <td class="mono">{{ code.code }}</td>
+        <td>{{ code.diagnosis }}</td>
+        <td>{{ code.claims }}</td>
+        <td>{{ code.totalBilled }}</td>
+        <td><span class="badge" [ngClass]="code.approvalClass">{{ code.approval }}</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

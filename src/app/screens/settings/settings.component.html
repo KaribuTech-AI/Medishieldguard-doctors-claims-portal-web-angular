@@ -1,0 +1,57 @@
+<app-page-header
+  title="Settings"
+  subtitle="Portal preferences, notifications, and integrations" />
+
+<div class="sh">Notification preferences</div>
+<div class="card">
+  <div *ngFor="let item of notificationToggles" class="toggle-row">
+    <div class="toggle-info">
+      <div class="toggle-title">{{ item.title }}</div>
+      <div class="toggle-desc">{{ item.description }}</div>
+    </div>
+    <button
+      type="button"
+      class="toggle"
+      [class.on]="item.enabled"
+      (click)="item.enabled = !item.enabled; toggleSetting(item.title, item.enabled)"></button>
+  </div>
+</div>
+
+<div class="sh">Portal preferences</div>
+<div class="card">
+  <div class="field">
+    <label>Default claim type</label>
+    <select [(ngModel)]="preferences.claimType" name="claimType">
+      <option *ngFor="let option of claimTypeOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Date format</label>
+    <select [(ngModel)]="preferences.dateFormat" name="dateFormat">
+      <option *ngFor="let option of dateFormatOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+  <div class="field" style="margin-bottom:0">
+    <label>Session timeout</label>
+    <select [(ngModel)]="preferences.sessionTimeout" name="sessionTimeout">
+      <option *ngFor="let option of sessionOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+</div>
+
+<div class="sh">Integrations</div>
+<div class="card">
+  <div *ngFor="let item of integrationToggles" class="toggle-row">
+    <div class="toggle-info">
+      <div class="toggle-title">{{ item.title }}</div>
+      <div class="toggle-desc">{{ item.description }}</div>
+    </div>
+    <button
+      type="button"
+      class="toggle"
+      [class.on]="item.enabled"
+      (click)="item.enabled = !item.enabled; toggleSetting(item.title, item.enabled)"></button>
+  </div>
+</div>
+
+<button class="btn btn-t" type="button" style="max-width:220px" (click)="savePreferences()">Save settings</button>
