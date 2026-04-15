@@ -180,7 +180,7 @@ export abstract class ScreenBaseComponent implements AfterViewInit {
   }
 
   protected downloadStub(label: string, description: string): void {
-    const content = `${label}\n${description}\nGenerated from MediShieldGuard Doctors Claims Portal`;
+    const content = `${label}\n${description}\nGenerated from medishieldguard Doctors Claims Portal`;
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
