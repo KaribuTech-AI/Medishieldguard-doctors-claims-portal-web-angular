@@ -12,10 +12,10 @@ spec:
     metadata:
       labels:
         app: medishieldguard
-        appVersion: 'b535ee1a4bccae173105fff0543aca0bbffade82'
+        appVersion: 'd9a3f920e50101ee0a6193cb992783a69bc04352'
     spec:
       containers:
       - name: medishieldguard-container
-        image: kaributechsworkflow/medishieldguard:3ec5730241412a10b0194e24667b965d1ae7b336
+        image: kaributechsworkflow/medishieldguard:d9a3f920e50101ee0a6193cb992783a69bc04352
         ports:
         - containerPort: 80
