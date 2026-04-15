@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Medishieldguard-deployment
+  namespace: blufountain-insurance
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Medishieldguard
+  template:
+    metadata:
+      labels:
+        app: Medishieldguard
+        appVersion: 'b535ee1a4bccae173105fff0543aca0bbffade82'
+    spec:
+      containers:
+      - name: Medishieldguard-container
+        image: kaributechsworkflow/Medishieldguard:3ec5730241412a10b0194e24667b965d1ae7b336
+        ports:
+        - containerPort: 80

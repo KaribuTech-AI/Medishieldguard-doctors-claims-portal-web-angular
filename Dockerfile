@@ -1,0 +1,17 @@
+# Build stage: Angular app
+FROM node:20-alpine AS build-stage
+WORKDIR /app
+ENV NODE_OPTIONS="--max-old-space-size=8192"
+COPY package.json package-lock.json* ./
+RUN npm install --legacy-peer-deps --no-audit --no-fund
+COPY . ./
+RUN npx ng build --configuration=production
+# Final stage: Nginx
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+COPY --from=build-stage /app/dist/shieldguard-angular/browser/ /usr/share/nginx/html/
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/nginx.dev.common /etc/nginx/conf.d/nginx.common
+ENV PORT=80
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
