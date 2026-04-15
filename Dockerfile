@@ -9,7 +9,7 @@ RUN npx ng build --configuration=production
 # Final stage: Nginx
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
-COPY --from=build-stage /app/dist/shieldguard-angular/browser/ /usr/share/nginx/html/
+COPY --from=build-stage /app/dist/medishieldguard-doctors-claims-portal/browser/ /usr/share/nginx/html/
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/nginx.dev.common /etc/nginx/conf.d/nginx.common
 ENV PORT=80
