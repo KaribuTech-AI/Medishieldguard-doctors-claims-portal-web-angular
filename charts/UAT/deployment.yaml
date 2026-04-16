@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: medishieldguard-container
-        image: kaributechsworkflow/medishieldguard:d9a3f920e50101ee0a6193cb992783a69bc04352
+        image: kaributechsworkflow/medishieldguard:6b90deb2b352388ab248602589acc4527cd9fbe3
         ports:
         - containerPort: 80
