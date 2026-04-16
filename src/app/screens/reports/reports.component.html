@@ -1,0 +1,25 @@
+<div class="pg-head"><div class="pg-title">Reports</div><div class="pg-sub">Generate custom reports for practice management, tax, and scheme reconciliation</div></div>
+<div class="sh">Quick reports</div>
+<div class="g3">
+  <div class="metric" data-toast="Generating monthly claims summary..."><div class="metric-lbl">Monthly summary</div><div class="metric-val" style="font-size:16px">Claims report</div><div class="metric-sub" style="color:var(--ink3)">Claims, revenue, approvals</div></div>
+  <div class="metric" data-toast="Generating payment reconciliation..."><div class="metric-lbl">Reconciliation</div><div class="metric-val" style="font-size:16px">Payment report</div><div class="metric-sub" style="color:var(--ink3)">EFT vs claims matched</div></div>
+  <div class="metric" data-toast="Generating patient report..."><div class="metric-lbl">Patient activity</div><div class="metric-val" style="font-size:16px">Patient report</div><div class="metric-sub" style="color:var(--ink3)">Visits, claims, benefits</div></div>
+</div>
+<div class="sh">Custom report builder</div>
+<div class="card">
+  <div class="g2">
+    <div class="field"><label>Report type</label><select><option>Claims summary</option><option>Revenue analysis</option><option>Payment reconciliation</option><option>Patient activity</option><option>Rejection analysis</option><option>Pre-auth summary</option></select></div>
+    <div class="field"><label>Date range</label><div class="g2"><input type="date" value="2026-01-01"><input type="date" value="2026-04-14"></div></div>
+  </div>
+  <div class="g2">
+    <div class="field"><label>Group by</label><select><option>Month</option><option>Week</option><option>Patient</option><option>ICD-10 code</option><option>Claim status</option></select></div>
+    <div class="field"><label>Format</label><select><option>PDF report</option><option>Excel spreadsheet (CSV)</option><option>On-screen summary</option></select></div>
+  </div>
+  <button class="btn btn-t" style="max-width:260px" data-toast="Report generating... Download will start automatically."><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Generate report</button>
+</div>
+<div class="sh">Recent reports</div>
+<div class="card card-sm">
+  <div class="cl-row"><div class="cl-body"><div class="cl-title">Monthly Claims Summary - March 2026</div><div class="cl-meta">Generated Apr 3 · PDF · 24 claims, R86,420 revenue</div></div><div class="cl-right"><button class="btn btn-s btn-sm" data-toast="Downloading...">Download</button></div></div>
+  <div class="cl-row"><div class="cl-body"><div class="cl-title">Payment Reconciliation - Q1 2026</div><div class="cl-meta">Generated Apr 1 · CSV · Jan-Mar matched payments</div></div><div class="cl-right"><button class="btn btn-s btn-sm" data-toast="Downloading...">Download</button></div></div>
+  <div class="cl-row" style="border-bottom:none"><div class="cl-body"><div class="cl-title">Tax Year Report - FY 2024/2025</div><div class="cl-meta">Generated Feb 28 · PDF · For SARS submission</div></div><div class="cl-right"><button class="btn btn-s btn-sm" data-toast="Downloading...">Download</button></div></div>
+</div>

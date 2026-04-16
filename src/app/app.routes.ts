@@ -7,15 +7,20 @@ const BankingScreenComponent = () => import('./screens/banking/banking.component
 const BatchDetailScreenComponent = () => import('./screens/batch-detail/batch-detail.component').then((m) => m.BatchDetailScreenComponent);
 const BatchScreenComponent = () => import('./screens/batch/batch.component').then((m) => m.BatchScreenComponent);
 const BenefitsScreenComponent = () => import('./screens/benefits/benefits.component').then((m) => m.BenefitsScreenComponent);
+const CalendarScreenComponent = () => import('./screens/calendar/calendar.component').then((m) => m.CalendarScreenComponent);
+const CdlScreenComponent = () => import('./screens/cdl/cdl.component').then((m) => m.CdlScreenComponent);
 const ClaimDetailScreenComponent = () => import('./screens/claim-detail/claim-detail.component').then((m) => m.ClaimDetailScreenComponent);
 const ClaimSuccessScreenComponent = () => import('./screens/claim-success/claim-success.component').then((m) => m.ClaimSuccessScreenComponent);
 const ClaimsScreenComponent = () => import('./screens/claims/claims.component').then((m) => m.ClaimsScreenComponent);
 const ClinicalScreenComponent = () => import('./screens/clinical/clinical.component').then((m) => m.ClinicalScreenComponent);
+const CpdScreenComponent = () => import('./screens/cpd/cpd.component').then((m) => m.CpdScreenComponent);
 const DspScreenComponent = () => import('./screens/dsp/dsp.component').then((m) => m.DspScreenComponent);
+const EmergenciesScreenComponent = () => import('./screens/emergencies/emergencies.component').then((m) => m.EmergenciesScreenComponent);
 const FormularyScreenComponent = () => import('./screens/formulary/formulary.component').then((m) => m.FormularyScreenComponent);
 const GuidelinesScreenComponent = () => import('./screens/guidelines/guidelines.component').then((m) => m.GuidelinesScreenComponent);
 const HomeScreenComponent = () => import('./screens/home/home.component').then((m) => m.HomeScreenComponent);
 const IcdScreenComponent = () => import('./screens/icd/icd.component').then((m) => m.IcdScreenComponent);
+const MessagesScreenComponent = () => import('./screens/messages/messages.component').then((m) => m.MessagesScreenComponent);
 const NotificationsScreenComponent = () => import('./screens/notifications/notifications.component').then((m) => m.NotificationsScreenComponent);
 const PatientsScreenComponent = () => import('./screens/patients/patients.component').then((m) => m.PatientsScreenComponent);
 const PayhistoryScreenComponent = () => import('./screens/payhistory/payhistory.component').then((m) => m.PayhistoryScreenComponent);
@@ -24,7 +29,9 @@ const ProfileScreenComponent = () => import('./screens/profile/profile.component
 const ReferralsScreenComponent = () => import('./screens/referrals/referrals.component').then((m) => m.ReferralsScreenComponent);
 const RejectionsScreenComponent = () => import('./screens/rejections/rejections.component').then((m) => m.RejectionsScreenComponent);
 const RemittanceScreenComponent = () => import('./screens/remittance/remittance.component').then((m) => m.RemittanceScreenComponent);
+const ReportsScreenComponent = () => import('./screens/reports/reports.component').then((m) => m.ReportsScreenComponent);
 const ReversalsScreenComponent = () => import('./screens/reversals/reversals.component').then((m) => m.ReversalsScreenComponent);
+const RulesScreenComponent = () => import('./screens/rules/rules.component').then((m) => m.RulesScreenComponent);
 const SettingsScreenComponent = () => import('./screens/settings/settings.component').then((m) => m.SettingsScreenComponent);
 const StatementsScreenComponent = () => import('./screens/statements/statements.component').then((m) => m.StatementsScreenComponent);
 const SubmitScreenComponent = () => import('./screens/submit/submit.component').then((m) => m.SubmitScreenComponent);
@@ -65,6 +72,16 @@ export const routes: Routes = [
     data: { title: screenTitles['benefits'], screenId: 'benefits' }
   },
   {
+    path: 'calendar',
+    loadComponent: CalendarScreenComponent,
+    data: { title: screenTitles['calendar'], screenId: 'calendar' }
+  },
+  {
+    path: 'cdl',
+    loadComponent: CdlScreenComponent,
+    data: { title: screenTitles['cdl'], screenId: 'cdl' }
+  },
+  {
     path: 'claim-detail',
     loadComponent: ClaimDetailScreenComponent,
     data: { title: screenTitles['claim-detail'], screenId: 'claim-detail' }
@@ -85,9 +102,19 @@ export const routes: Routes = [
     data: { title: screenTitles['clinical'], screenId: 'clinical' }
   },
   {
+    path: 'cpd',
+    loadComponent: CpdScreenComponent,
+    data: { title: screenTitles['cpd'], screenId: 'cpd' }
+  },
+  {
     path: 'dsp',
     loadComponent: DspScreenComponent,
     data: { title: screenTitles['dsp'], screenId: 'dsp' }
+  },
+  {
+    path: 'emergencies',
+    loadComponent: EmergenciesScreenComponent,
+    data: { title: screenTitles['emergencies'], screenId: 'emergencies' }
   },
   {
     path: 'formulary',
@@ -108,6 +135,11 @@ export const routes: Routes = [
     path: 'icd',
     loadComponent: IcdScreenComponent,
     data: { title: screenTitles['icd'], screenId: 'icd' }
+  },
+  {
+    path: 'messages',
+    loadComponent: MessagesScreenComponent,
+    data: { title: screenTitles['messages'], screenId: 'messages' }
   },
   {
     path: 'notifications',
@@ -150,9 +182,19 @@ export const routes: Routes = [
     data: { title: screenTitles['remittance'], screenId: 'remittance' }
   },
   {
+    path: 'reports',
+    loadComponent: ReportsScreenComponent,
+    data: { title: screenTitles['reports'], screenId: 'reports' }
+  },
+  {
     path: 'reversals',
     loadComponent: ReversalsScreenComponent,
     data: { title: screenTitles['reversals'], screenId: 'reversals' }
+  },
+  {
+    path: 'rules',
+    loadComponent: RulesScreenComponent,
+    data: { title: screenTitles['rules'], screenId: 'rules' }
   },
   {
     path: 'settings',

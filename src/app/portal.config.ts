@@ -1,6 +1,7 @@
 export type ScreenId =
   | 'home'
   | 'analytics'
+  | 'calendar'
   | 'notifications'
   | 'claims'
   | 'claim-detail'
@@ -22,11 +23,17 @@ export type ScreenId =
   | 'tariffs'
   | 'icd'
   | 'formulary'
+  | 'cdl'
   | 'guidelines'
+  | 'rules'
   | 'dsp'
+  | 'emergencies'
   | 'profile'
   | 'users'
+  | 'cpd'
   | 'settings'
+  | 'messages'
+  | 'reports'
   | 'support'
   | 'audit';
 
@@ -46,6 +53,7 @@ export interface NavSection {
 export const screenTitles: Record<ScreenId, string> = {
   home: 'Dashboard',
   analytics: 'Practice Analytics',
+  calendar: 'Practice Calendar',
   notifications: 'Notifications',
   claims: 'All Claims',
   'claim-detail': 'Claim Detail',
@@ -67,11 +75,17 @@ export const screenTitles: Record<ScreenId, string> = {
   tariffs: 'NHRPL Tariffs',
   icd: 'ICD-10 Lookup',
   formulary: 'Formulary & CDL',
+  cdl: 'CDL Enrolment',
   guidelines: 'Clinical Guidelines',
+  rules: 'Scheme Rules',
   dsp: 'DSP Network Info',
+  emergencies: 'Emergency Protocols',
   profile: 'Practice Profile',
   users: 'Users & Access',
+  cpd: 'CPD Tracker',
   settings: 'Settings',
+  messages: 'Secure Messages',
+  reports: 'Reports',
   support: 'Provider Support',
   audit: 'Audit Log'
 };
@@ -82,6 +96,7 @@ export const navSections: NavSection[] = [
     items: [
       { id: 'home', label: 'Dashboard', icon: '<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>' },
       { id: 'analytics', label: 'Analytics', icon: '<svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>' },
+      { id: 'calendar', label: 'Calendar', icon: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' },
       { id: 'notifications', label: 'Notifications', badge: '5', badgeClass: 'nav-badge', icon: '<svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>' }
     ]
   },
@@ -120,8 +135,11 @@ export const navSections: NavSection[] = [
       { id: 'tariffs', label: 'NHRPL tariffs', icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>' },
       { id: 'icd', label: 'ICD-10 lookup', icon: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' },
       { id: 'formulary', label: 'Formulary / CDL', icon: '<svg viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4"/></svg>' },
+      { id: 'cdl', label: 'CDL enrolment', icon: '<svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>' },
       { id: 'guidelines', label: 'Clinical guidelines', icon: '<svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>' },
-      { id: 'dsp', label: 'DSP network info', icon: '<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' }
+      { id: 'rules', label: 'Scheme rules', icon: '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>' },
+      { id: 'dsp', label: 'DSP network info', icon: '<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' },
+      { id: 'emergencies', label: 'Emergency protocols', icon: '<svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>' }
     ]
   },
   {
@@ -129,7 +147,10 @@ export const navSections: NavSection[] = [
     items: [
       { id: 'profile', label: 'Practice profile', icon: '<svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' },
       { id: 'users', label: 'Users & access', icon: '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>' },
+      { id: 'cpd', label: 'CPD tracker', icon: '<svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 6 3 6 3s3 0 6-3v-5"/></svg>' },
       { id: 'settings', label: 'Settings', icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>' },
+      { id: 'messages', label: 'Secure messages', badge: '1', badgeClass: 'nav-badge-teal', icon: '<svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>' },
+      { id: 'reports', label: 'Reports', icon: '<svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>' },
       { id: 'support', label: 'Provider support', icon: '<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>' },
       { id: 'audit', label: 'Audit log', icon: '<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' }
     ]
